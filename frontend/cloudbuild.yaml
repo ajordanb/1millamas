@@ -1,0 +1,53 @@
+steps:
+  # Build the static bundle with all public VITE_* values baked in at build time.
+  - name: 'gcr.io/cloud-builders/docker'
+    args:
+      - 'build'
+      - '-f'
+      - 'frontend/Dockerfile'
+      - '-t'
+      - '${_AR_HOSTNAME}/${_AR_PROJECT_ID}/${_AR_REPOSITORY}/${_SERVICE_NAME}:${COMMIT_SHA}'
+      - '--build-arg'
+      - 'VITE_API_URL=${_VITE_API_URL}'
+      - '--build-arg'
+      - 'VITE_GOFUNDME_URL=${_VITE_GOFUNDME_URL}'
+      - '--build-arg'
+      - 'VITE_CHALLENGE_RUN_URL=${_VITE_CHALLENGE_RUN_URL}'
+      - '--build-arg'
+      - 'VITE_CHALLENGE_BIKE_URL=${_VITE_CHALLENGE_BIKE_URL}'
+      - '--build-arg'
+      - 'VITE_CHALLENGE_JOIN_CODE=${_VITE_CHALLENGE_JOIN_CODE}'
+      - '--build-arg'
+      - 'VITE_STRAVA_CLUB_URL=${_VITE_STRAVA_CLUB_URL}'
+      - 'frontend'
+  # Push the image to Artifact Registry.
+  - name: 'gcr.io/cloud-builders/docker'
+    args:
+      - 'push'
+      - '${_AR_HOSTNAME}/${_AR_PROJECT_ID}/${_AR_REPOSITORY}/${_SERVICE_NAME}:${COMMIT_SHA}'
+  # Deploy the new image to Cloud Run.
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+    entrypoint: gcloud
+    args:
+      - 'run'
+      - 'deploy'
+      - '${_SERVICE_NAME}'
+      - '--image=${_AR_HOSTNAME}/${_AR_PROJECT_ID}/${_AR_REPOSITORY}/${_SERVICE_NAME}:${COMMIT_SHA}'
+      - '--region=${_DEPLOY_REGION}'
+      - '--platform=${_PLATFORM}'
+      - '--quiet'
+
+images:
+  - '${_AR_HOSTNAME}/${_AR_PROJECT_ID}/${_AR_REPOSITORY}/${_SERVICE_NAME}:${COMMIT_SHA}'
+
+# Defaults so empty VITE_* substitutions don't fail the build; the trigger overrides these.
+substitutions:
+  _VITE_API_URL: ''
+  _VITE_GOFUNDME_URL: ''
+  _VITE_CHALLENGE_RUN_URL: ''
+  _VITE_CHALLENGE_BIKE_URL: ''
+  _VITE_CHALLENGE_JOIN_CODE: ''
+  _VITE_STRAVA_CLUB_URL: ''
+
+options:
+  logging: CLOUD_LOGGING_ONLY   # avoids "build must specify logging bucket" on default SA
