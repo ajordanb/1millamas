@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body style="margin:0; padding:0; background:#ffffff; font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif; color:#1a1a1a; line-height:1.6;">
+    <table width="100%" cellpadding="0" cellspacing="0" style="padding:32px 16px;">
+        <tr>
+            <td align="center">
+                <table width="560" cellpadding="0" cellspacing="0" style="max-width:560px; width:100%;">
+                    <tr>
+                        <td style="padding-bottom:8px;">
+                            <p style="margin:0; font-size:12px; letter-spacing:1.5px; text-transform:uppercase; color:#8a8a8a;">{{ app_name }}</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="padding-bottom:20px;">
+                            <h1 style="margin:0; font-size:22px; font-weight:600; color:#1a1a1a;">Confirm your email</h1>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="padding-bottom:16px;">
+                            <p style="margin:0 0 16px; font-size:16px;">Welcome{% if name %}, {{ name }}{% endif %} — thanks for joining {{ app_name }}.</p>
+                            <p style="margin:0 0 8px; font-size:16px;">Please confirm your email address to activate your account and register for the race.</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="padding:8px 0 20px;">
+                            <table cellpadding="0" cellspacing="0">
+                                <tr>
+                                    <td style="background:#0e4d49; border-radius:6px;">
+                                        <a href="{{ verify_link }}" style="display:inline-block; padding:11px 26px; color:#ffffff; text-decoration:none; font-size:15px; font-weight:600;">Confirm email</a>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="padding-bottom:20px;">
+                            <p style="margin:0; font-size:14px; color:#555;">This link expires in {{ valid_hours }} hours. If the button doesn't work, copy and paste this URL into your browser:</p>
+                            <p style="margin:8px 0 0; font-size:13px; word-break:break-all;"><a href="{{ verify_link }}" style="color:#0e4d49;">{{ verify_link }}</a></p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="border-top:1px solid #e5e5e5; padding-top:16px;">
+                            <p style="margin:0; font-size:13px; color:#999;">If you didn't sign up for {{ app_name }}, you can safely ignore this email.</p>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>

@@ -1,0 +1,18 @@
+# Python-generated files
+__pycache__/
+*.py[oc]
+build/
+dist/
+wheels/
+*.egg-info
+
+# Properly exclude all .idea directories anywhere in the project
+**/.idea/
+
+# Virtual environments
+.venv
+.env
+.idea
+.idea/
+
+google_credentials.json

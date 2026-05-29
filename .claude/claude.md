@@ -1,0 +1,2 @@
+- Simplicity is key. Sacrifice grammar for succint answers. 
+- Alway's show your plan before applying. 

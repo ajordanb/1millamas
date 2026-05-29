@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body style="margin:0; padding:0; background:#ffffff; font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif; color:#1a1a1a; line-height:1.6;">
+    <table width="100%" cellpadding="0" cellspacing="0" style="padding:32px 16px;">
+        <tr>
+            <td align="center">
+                <table width="560" cellpadding="0" cellspacing="0" style="max-width:560px; width:100%;">
+                    <tr>
+                        <td style="padding-bottom:8px;">
+                            <p style="margin:0; font-size:12px; letter-spacing:1.5px; text-transform:uppercase; color:#8a8a8a;">{{ app_name }}</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="padding-bottom:20px;">
+                            <h1 style="margin:0; font-size:22px; font-weight:600; color:#1a1a1a;">You're registered</h1>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="padding-bottom:16px;">
+                            <p style="margin:0 0 16px; font-size:16px;">Hi {{ full_name }},</p>
+                            <p style="margin:0 0 16px; font-size:16px;">Your spot as a <strong>{{ discipline_label }}</strong> is confirmed. Your goal is <strong>{{ goal_km }} km</strong>. Here's how to get going:</p>
+                        </td>
+                    </tr>
+
+                    <!-- Track distance: the challenge -->
+                    <tr>
+                        <td style="padding-bottom:6px;">
+                            <p style="margin:0; font-size:16px; font-weight:600;">1. Track your distance</p>
+                            <p style="margin:4px 0 10px; font-size:15px; color:#444;">Join the {{ discipline_label }} challenge and connect your Strava — your activities count automatically.</p>
+                        </td>
+                    </tr>
+                    {% if challenge_join_code %}
+                    <tr>
+                        <td style="padding-bottom:12px;">
+                            <p style="margin:0; font-size:15px; color:#444;">Use join code <strong style="font-family:monospace; background:#f0f0f0; padding:2px 8px; border-radius:4px; letter-spacing:1px;">{{ challenge_join_code }}</strong></p>
+                        </td>
+                    </tr>
+                    {% endif %}
+                    {% if challenge_url %}
+                    <tr>
+                        <td style="padding-bottom:8px;">
+                            <table cellpadding="0" cellspacing="0">
+                                <tr>
+                                    <td style="background:#0e4d49; border-radius:6px;">
+                                        <a href="{{ challenge_url }}" style="display:inline-block; padding:11px 26px; color:#ffffff; text-decoration:none; font-size:15px; font-weight:600;">Join the {{ discipline_label }} challenge</a>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                    {% else %}
+                    <tr>
+                        <td style="padding-bottom:8px;">
+                            <p style="margin:0; font-size:15px; color:#555;">We'll email you the challenge link shortly — keep an eye on your inbox before the start.</p>
+                        </td>
+                    </tr>
+                    {% endif %}
+                    <tr>
+                        <td style="padding-bottom:20px;">
+                            <p style="margin:0; font-size:13px; color:#777;">Challenge Hound charges a <strong>$2.99 + tax</strong> sign-up fee to cover the app — we keep none of it, and make no profit. Your charity donation ({{ min_donation }} minimum) is separate, via GoFundMe.</p>
+                        </td>
+                    </tr>
+
+                    <!-- Community: the club -->
+                    {% if strava_club_url %}
+                    <tr>
+                        <td style="padding-bottom:20px;">
+                            <p style="margin:0; font-size:16px; font-weight:600;">2. Say hi</p>
+                            <p style="margin:4px 0 6px; font-size:15px; color:#444;">Join our Strava club for updates, questions, and cheering each other on.</p>
+                            <p style="margin:0; font-size:15px;"><a href="{{ strava_club_url }}" style="color:#0e4d49; text-decoration:underline;">Join the Strava club &rarr;</a></p>
+                        </td>
+                    </tr>
+                    {% endif %}
+
+                    <tr>
+                        <td style="border-top:1px solid #e5e5e5; padding-top:16px;">
+                            <p style="margin:0; font-size:13px; color:#999;">{{ app_name }} · Winner picks the cause.</p>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>
