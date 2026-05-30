@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import * as z from 'zod'
-import { Bike, Footprints, Upload } from 'lucide-react'
+import { Bike, ExternalLink, Footprints, Upload } from 'lucide-react'
 import { ParticipantShell } from '@/components/challenge/ParticipantShell'
 import { VerifyEmailNotice } from '@/components/challenge/VerifyEmailNotice'
 import { Button } from '@/components/ui/button'
@@ -124,6 +124,22 @@ function RegisterRacePage() {
       <p className="mt-3 rounded-xl bg-black/15 px-4 py-3 text-xs text-foreground/60">
         {challenge.feeNote} You'll get the challenge join code right after you register.
       </p>
+
+      {challenge.gofundmeUrl ? (
+        <div className="mt-4 flex flex-col gap-2 rounded-xl border border-border/60 bg-brand-teal-panel p-4 sm:flex-row sm:items-center sm:justify-between">
+          <p className="text-sm text-foreground/80">
+            Step 1: make your donation ({challenge.minDonation} minimum), then upload the screenshot below.
+          </p>
+          <a
+            href={challenge.gofundmeUrl}
+            target="_blank"
+            rel="noreferrer"
+            className="inline-flex h-10 shrink-0 items-center justify-center gap-2 rounded-full bg-secondary px-5 text-sm font-bold uppercase tracking-wide text-secondary-foreground transition-opacity hover:opacity-90"
+          >
+            Donate on GoFundMe <ExternalLink className="size-4" />
+          </a>
+        </div>
+      ) : null}
 
       {error ? (
         <div role="alert" className="mt-6 rounded-xl bg-destructive/15 px-3 py-2.5 text-sm text-destructive-foreground">

@@ -31,6 +31,16 @@ function Landing() {
         >
           Rules
         </Link>
+        {challenge.gofundmeUrl ? (
+          <a
+            href={challenge.gofundmeUrl}
+            target="_blank"
+            rel="noreferrer"
+            className="rounded-full bg-secondary px-4 py-1.5 text-secondary-foreground transition-opacity hover:opacity-90"
+          >
+            Donate
+          </a>
+        ) : null}
         {isAuthenticated ? (
           <Link
             to={dashboardTo}
