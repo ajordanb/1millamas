@@ -78,8 +78,8 @@ async def my_proof_url(
 
 
 @participant_router.post("/register", response_model=ParticipantOut)
-@limiter.limit("1/day", key_func=user_rate_key)  # one registration per account per day
-@limiter.limit("5/minute", key_func=get_remote_address)  # per-IP abuse cap
+@limiter.limit("30/hour", key_func=user_rate_key)  # per-account cap (registration is idempotent anyway)
+@limiter.limit("30/minute", key_func=get_remote_address)  # per-IP abuse cap
 async def register_for_race(
     request: Request,
     bg: BackgroundTasks,
