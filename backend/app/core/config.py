@@ -40,10 +40,10 @@ class Settings(BaseSettings):
         magic_link_refresh_seconds: Magic link refresh interval in seconds
     """
     app_name: str = "your_backend_app"
+    # Public base URL of the site — used to build every user-facing link emailed
+    # out (verification, password reset, magic link, etc.). Set this to the
+    # frontend's public URL in production.
     app_domain: str = "http://localhost:5151"
-    # Public base URL of the frontend SPA — used to build links emailed to users
-    # (verification, etc.). Defaults to the local Vite dev server.
-    frontend_url: str = "http://localhost:3000"
     mount_point: str = ""
     db_name: str = "your_backend_app_backend"
     db_conn_str: str = "mongodb://localhost:27017/"

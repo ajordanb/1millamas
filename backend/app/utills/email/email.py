@@ -155,7 +155,7 @@ class EmailService:
         return EmailData(to=recipient, html_content=html_content, subject=subject)
 
     def generate_verification_email(self, user_email: str, token: str, name: str | None = None) -> EmailData:
-        verify_link = f"{settings.frontend_url}/verify-email?token={token}"
+        verify_link = f"{settings.app_domain.rstrip('/')}/verify-email?token={token}"
         subject = f"Confirm your email for {getattr(settings, 'app_name', 'our challenge')}"
         html_content = self.render_email_template(
             template_name="verify_email.html",
