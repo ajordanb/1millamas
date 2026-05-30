@@ -8,7 +8,7 @@ export const challenge = {
   kicker: 'Run / Bike Challenge',
   tagline: ['The pain is shared.', 'The choice is earned.'],
   subTagline: 'Winner picks the cause',
-  dates: 'Jun 1 — Dec 31',
+  dates: 'Jun 15 — Dec 31',
   year: 2026,
 
   // The fundraiser. We ask for a screenshot of a donation here.
